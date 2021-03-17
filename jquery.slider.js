@@ -4,6 +4,7 @@ $(function ($) {
         this.options = {
             container: "slider", // 轮播容器
             imgs: [],
+            link: [],
             duration: "normal", // 轮播时长
             delay: 2000, // 延迟
             direction: "left", // 自动轮播方向
@@ -30,18 +31,19 @@ $(function ($) {
     Slider.prototype.createDom = function () { // 创建基本的DOM结构
         var _this = this;
         var imgs = this.options.imgs;
+        var link = this.options.link;
         var imgX = $("<ul class='" + this.id + "-ul'></ul>");
         var imgLi = "";
         var circleX = $("<div class='" + this.id + "-circlex'><ul class='" + this.id + "-circlex-ul'></ul></div>");
         var circleLi = "";
         for (var i = 0; i < imgs.length; i++) {
             var active = i === 0 ? "active" : "";
-            imgLi += "<li style='width: " + _this.liWidth + "px;' class='" + this.id + "-ul-li'><a class='" + this.id + "-ul-li-a' href='javascript: void(0);'>" +
+            imgLi += "<li style='width: " + _this.liWidth + "px;' class='" + this.id + "-ul-li'><a class='" + this.id + "-ul-li-a' href='" + link[i] + "'>" +
                 "<img class='" + this.id + "-ul-li-a-img' src='" + imgs[i] + "'>" +
                 "</a></li>";
             if (i === imgs.length - 1) {
-                imgLi += "<li class='" + this.id + "-ul-li'><a class='" + this.id + "-ul-li-a' href='javascript: void(0);'>" +
-                    "<img class='" + this.id + "-ul-li-a-img' src='" + imgs[0] + "'>" +
+                imgLi += "<li class='" + this.id + "-ul-li'>" +
+                    "<a class='" + this.id + "-ul-li-a' href='" + link[0] + "'><img class='" + this.id + "-ul-li-a-img' src='" + imgs[0] + "'>" +
                     "</a></li>";
             }
             circleLi += "<li class='" + this.id + "-circlex-ul-li " + active + "'></li>";
